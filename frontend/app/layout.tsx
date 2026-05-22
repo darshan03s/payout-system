@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Playto Payout',
-  description: 'Playto Payout'
+  title: 'Payout System',
+  description: 'Payout System'
 }
 
 export default function RootLayout({

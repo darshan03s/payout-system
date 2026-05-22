@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:15
-    container_name: playto_db
+    container_name: payout_db
     restart: always
     environment:
       POSTGRES_DB: payout_engine
@@ -12,13 +12,13 @@ services:
 
   redis:
     image: redis:7
-    container_name: playto_redis
+    container_name: payout_redis
     ports:
       - "6379:6379"
 
   web:
     build: .
-    container_name: playto_web
+    container_name: payout_web
     command: sh -c "python wait_for_db.py && python manage.py migrate && python
       manage.py shell -c 'from init_app import run; run()' && python manage.py
       runserver 0.0.0.0:8000"
@@ -39,7 +39,7 @@ services:
 
   celery:
     build: .
-    container_name: playto_celery
+    container_name: payout_celery
     command: sh -c "python wait_for_db.py && celery -A core worker -l info
       --concurrency=1"
     volumes:
@@ -57,7 +57,7 @@ services:
 
   beat:
     build: .
-    container_name: playto_beat
+    container_name: payout_beat
     command: sh -c "python wait_for_db.py && celery -A core beat -l info"
     volumes:
       - .:/app

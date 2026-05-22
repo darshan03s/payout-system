@@ -27,8 +27,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-dev-key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['playto-payout-engine-hmub.onrender.com',
-                 'playto-payout.darshans.site', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -166,7 +165,7 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://playto-payout.darshans.site",
+    "https://payouts.darshans.site",
     "http://localhost:3000",
 ]
 
