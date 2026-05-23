@@ -46,6 +46,11 @@ const PayoutClient = ({ bankAccounts }: { bankAccounts: BankAccount[] }) => {
       return
     }
 
+    if (!Number.isFinite(amountNum) || amountNum <= 0 || !/^\d+(\.\d{1,2})?$/.test(amount)) {
+      setError('Please enter a valid amount with at most 2 decimals.')
+      return
+    }
+
     const amountPaise = amountNum * 100
 
     // generate key ONLY once per logical request
