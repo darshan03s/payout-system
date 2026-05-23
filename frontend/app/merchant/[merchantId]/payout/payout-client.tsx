@@ -40,7 +40,7 @@ const PayoutClient = ({ bankAccounts }: { bankAccounts: BankAccount[] }) => {
       return
     }
 
-    const amountNum = parseInt(amount)
+    const amountNum = Number(amount)
     if (!amount || isNaN(amountNum) || amountNum <= 0) {
       setError('Please enter a valid amount.')
       return
