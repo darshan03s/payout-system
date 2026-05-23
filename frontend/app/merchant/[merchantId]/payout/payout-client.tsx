@@ -134,7 +134,7 @@ const PayoutClient = ({ bankAccounts }: { bankAccounts: BankAccount[] }) => {
         <Input
           type="number"
           min="0"
-          step="1"
+          step="0.01"
           placeholder="0"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
