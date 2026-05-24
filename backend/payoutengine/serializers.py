@@ -7,6 +7,14 @@ class PayoutRequestSerializer(serializers.Serializer):
     amount_paise = serializers.IntegerField(min_value=1)
     bank_account_id = serializers.UUIDField()
 
+    def validate_amount_paise(self, value):
+        raw_value = self.initial_data.get("amount_paise")
+
+        if isinstance(raw_value, float):
+            raise serializers.ValidationError("amount_paise must be an integer.")
+
+        return value
+
     def validate_bank_account_id(self, value):
         """Verify bank account exists and belongs to the merchant."""
         merchant = self.context.get("merchant")
@@ -31,6 +39,4 @@ def validate_idempotency_key(key_value: str) -> uuid.UUID:
     try:
         return uuid.UUID(str(key_value))
     except (ValueError, AttributeError):
-        raise serializers.ValidationError(
-            "Idempotency-Key must be a valid UUID."
-        )
+        raise serializers.ValidationError("Idempotency-Key must be a valid UUID.")
