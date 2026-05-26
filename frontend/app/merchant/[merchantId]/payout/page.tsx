@@ -30,7 +30,7 @@ const Page = async ({ params }: PageProps) => {
   const bankAccounts = json.bankAccounts as BankAccount[]
 
   return (
-    <div className="h-[calc(100vh-48px)] flex items-center justify-center">
+    <div className="h-[calc(100vh-48px)] flex items-center justify-center px-4 md:px-0">
       <PayoutClient bankAccounts={bankAccounts} />
     </div>
   )
